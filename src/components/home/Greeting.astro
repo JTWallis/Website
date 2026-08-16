@@ -1,0 +1,19 @@
+---
+    const { t } = Astro.locals;
+---
+
+<section>
+    <legend>{t("home.legend.greeting")}</legend>
+    <div>
+        <h1>{t("home.greeting.header")}</h1>
+        <br>
+        <p>{t("home.greeting.text0")}</p>
+        <p>{t("home.greeting.text1")}</p>
+        <br>
+        <p>
+            {t("home.greeting.text2")}
+            <small class="text-[0.5rem]">{t("home.greeting.text3")}</small>
+            {t("home.greeting.text4")}
+        </p>
+    </div>
+</section>

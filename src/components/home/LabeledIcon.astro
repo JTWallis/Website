@@ -1,0 +1,15 @@
+---
+import Svg from "../elements/Svg.svelte";
+
+interface Props {
+    svgPath: string,
+    label: string
+}
+
+const { svgPath, label } = Astro.props
+---
+
+<div class="flex w-fit items-center bg-surface1 rounded-sm border border-surface2 hoverShadow">
+    <Svg path={svgPath} className="pl-1" />
+    <span class="px-2 py-0.5">{label}</span>
+</div>

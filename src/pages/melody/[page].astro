@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import StaffWrapper from "../../components/melody-creator/StaffWrapper.svelte";
+import { URL_BACKEND } from "../../constants/urls";
+import type { MelodyDto } from "../../models/melody-dto";
+
+export const prerender = false;
+const { t } = Astro.locals;
+
+let melody: MelodyDto | undefined;
+
+try {
+    const path = Astro.url.pathname;
+    const pageId = Number.parseInt(path.substring(path.lastIndexOf("/") + 1));
+    if(Number.isNaN(pageId)) throw new Error("Invalid page id");
+
+    const response = await fetch(`${URL_BACKEND}/melody/score/${pageId}`);
+    if(!response.ok) {
+        throw new Error(`Could not fetch page: ${response.status}`);
+    }
+
+    melody = await response.json() as MelodyDto;
+} catch(err: any) {
+    console.warn("Error: ", err.message);
+}
+
+---
+
+<Layout title={t("nav.melody-creator")}>
+
+    <div class="w-screen flex flex-col items-center gap-8">
+        <section class="w-pref-60-80">
+            <legend><h1>{t("nav.melody-creator")}</h1></legend>
+        </section>
+
+        {!melody ? null :
+            <StaffWrapper melody={melody} client:only="svelte" />
+        }
+    </div>
+
+</Layout>
+

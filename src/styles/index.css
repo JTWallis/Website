@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+section:has(legend) {
+    @apply max-w-[60%] max-md:max-w-[80%] mx-auto mt-16
+}

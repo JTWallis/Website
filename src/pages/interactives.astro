@@ -1,0 +1,55 @@
+---
+import '../styles/interactives.css';
+import Layout from '../layouts/Layout.astro';
+import Cursor from '../components/interactives/Cursor.svelte';
+import Sidebar from '../components/interactives/Sidebar.svelte';
+import TrimmedProjectCard from '../components/interactives/TrimmedProjectCard.svelte';
+
+import { URL_PICTOCHAT, URL_HATI } from "../constants/urls";
+
+const { t, lang } = Astro.locals;
+const langPrefix = lang === "de" ? "" : "/" + lang;
+---
+
+<Layout title={t("nav.interactives")}>
+    <Cursor client:only="svelte" />
+
+    <div class="fixed z-1 right-0">
+        <Sidebar client:only="svelte" />
+    </div>
+
+    <section>
+        <legend>{t("projects.legend.pretext")}</legend>
+        <p class="text-maroon"><b>Site under construction!</b></p><br>
+        <p>{t("projects.pretext.hover")}</p>
+    </section>
+
+    <div class="mt-8 mx-auto cardGrid">
+
+        <TrimmedProjectCard 
+            title="hati"
+            description={t("projects.description.hati")}
+            thumbnailSrc="/thumbnails/hati.webp"
+            animatedSrc="/thumbnails/hati-animated.webp"
+            websiteUrl={URL_HATI}
+        />
+
+        <TrimmedProjectCard 
+            title={t("nav.melody-creator")}
+            description={t("projects.description.melodycreator")}
+            thumbnailSrc="/thumbnails/melodycreator.webp"
+            animatedSrc="/thumbnails/melodycreator-animated.webp"
+            websiteUrl={`${langPrefix}/melodies`}
+            client:only="svelte"
+        />
+
+        <TrimmedProjectCard 
+            title="Pictochat"
+            description={t("projects.description.pictochat")}
+            thumbnailSrc="/thumbnails/pictochat.webp"
+            animatedSrc="/thumbnails/pictochat-animated.webp"
+            websiteUrl={URL_PICTOCHAT}
+            client:only="svelte"
+        />
+    </div>
+</Layout>

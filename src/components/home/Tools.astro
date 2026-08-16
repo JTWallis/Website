@@ -1,0 +1,93 @@
+---
+    import TitledSeparator from "./TitledSeparator.astro";
+    import LabeledIcon from './LabeledIcon.astro';
+
+    import SvgPathJava from '../../assets/svgs/tools/java.svgpath?raw';
+    import SvgPathCsharp from '../../assets/svgs/tools/csharp.svgpath?raw';
+    import SvgPathC from '../../assets/svgs/tools/c.svgpath?raw';
+    import SvgPathCpp from '../../assets/svgs/tools/cpp.svgpath?raw';
+    import SvgPathTs from '../../assets/svgs/tools/typescript.svgpath?raw';
+    import SvgPathPython from '../../assets/svgs/tools/python.svgpath?raw';
+    import SvgPathKotlin from '../../assets/svgs/tools/kotlin.svgpath?raw';
+
+    import SvgPathHibernate from '../../assets/svgs/tools/hibernate.svgpath?raw';
+    import SvgPathSpring from '../../assets/svgs/tools/springboot.svgpath?raw';
+    import SvgPathReact from '../../assets/svgs/tools/react.svgpath?raw';
+    import SvgPathSvelte from '../../assets/svgs/tools/svelte.svgpath?raw';
+    import SvgPathAstro from '../../assets/svgs/tools/astro.svgpath?raw';
+    import SvgPathTailwind from '../../assets/svgs/tools/tailwind.svgpath?raw';
+    import SvgPathAngular from '../../assets/svgs/tools/angular.svgpath?raw';
+    import SvgPathNest from '../../assets/svgs/tools/nest.svgpath?raw';
+    import SvgPathPrisma from '../../assets/svgs/tools/prisma.svgpath?raw';
+    import SvgPathPhaser from '../../assets/svgs/tools/phaser.svgpath?raw';
+    import SvgPathOpenGl from '../../assets/svgs/tools/opengl.svgpath?raw';
+    import SvgPathVulkan from '../../assets/svgs/tools/vulkan.svgpath?raw';
+    import SvgPathUnity from '../../assets/svgs/tools/unity.svgpath?raw';
+
+    import SvgPathGit from '../../assets/svgs/tools/git.svgpath?raw';
+    import SvgPathPostgreSql from '../../assets/svgs/tools/postgresql.svgpath?raw';
+    import SvgPathAndroidStudio from '../../assets/svgs/tools/android.svgpath?raw';
+
+    // TODO: Svelte, React, AndroidStudio icons
+    // TODO: Images webp not png/jpg
+
+    const { t } = Astro.locals;
+---
+
+<section>
+    <legend>{t("home.legend.it")}</legend>
+
+    <div class="flex flex-col gap-8">
+        <!-- Languages -->
+        <div class="flex flex-col gap-2">
+            <TitledSeparator title={t("home.it.title.languages")}/>
+            <div class="flex flex-wrap gap-2">
+                <LabeledIcon svgPath={SvgPathJava} label="Java"  />
+                <LabeledIcon svgPath={SvgPathCsharp} label="C#" />
+                <LabeledIcon svgPath={SvgPathC} label="C" />
+                <LabeledIcon svgPath={SvgPathCpp} label="C++" />
+                <LabeledIcon svgPath={SvgPathTs} label="TypeScript" />
+                <LabeledIcon svgPath={SvgPathPython} label="Python" />
+                <LabeledIcon svgPath={SvgPathKotlin} label="Kotlin" />
+            </div>
+        </div>
+
+        <!-- Frameworks -->
+        <div class="flex flex-col gap-2">
+            <TitledSeparator title={t("home.it.title.frameworks")}/>
+            <div class="flex flex-wrap gap-2">
+                <LabeledIcon svgPath={SvgPathJava} label="JavaFX" />
+                <LabeledIcon svgPath={SvgPathHibernate} label="Hibernate" />
+                <LabeledIcon svgPath={SvgPathSpring} label="Spring Boot" />
+                <LabeledIcon svgPath={SvgPathCsharp} label=".NET WPF" />
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <LabeledIcon svgPath={SvgPathReact} label="React" />
+                <LabeledIcon svgPath={SvgPathSvelte} label="Svelte" />
+                <LabeledIcon svgPath={SvgPathAstro} label="Astro" />
+                <LabeledIcon svgPath={SvgPathTailwind} label="Tailwind" />
+                <LabeledIcon svgPath={SvgPathAngular} label="Angular" />
+                <LabeledIcon svgPath={SvgPathNest} label="NestJS" />
+                <LabeledIcon svgPath={SvgPathPrisma} label="Prisma" />
+                <LabeledIcon svgPath={SvgPathPhaser} label="Phaser" />
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <LabeledIcon svgPath={SvgPathOpenGl} label="OpenGL" />
+                <LabeledIcon svgPath={SvgPathVulkan} label="Vulkan" />
+                <LabeledIcon svgPath={SvgPathUnity} label="Unity" />
+            </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="flex flex-col gap-2">
+            <TitledSeparator title={t("home.it.title.tools")}/>
+            <div class="flex flex-wrap gap-2">
+                <LabeledIcon svgPath={SvgPathGit} label="Git" />
+                <LabeledIcon svgPath={SvgPathPostgreSql} label="PostgreSQL" />
+                <LabeledIcon svgPath={SvgPathAndroidStudio} label="Android Studio" />
+            </div>
+        </div>
+    </div>
+
+
+</section>

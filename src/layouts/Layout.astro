@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+import DarkmodeButton from '../components/DarkmodeButton.svelte';
+import Header from '../components/Header.svelte';
+import Footer from '../components/Footer.svelte';
+
+const { lang } = Astro.locals;
+const { title } = Astro.props;
+---
+
+<html lang={lang}>
+	<head>
+		<title>{title}</title>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body class="flex flex-col min-h-screen bg-base text-text items-center">
+        <Header client:only="svelte" lang={lang} />
+        <DarkmodeButton client:only="svelte" />
+        <main>
+			<div class="mt-20" />
+            <slot />
+        </main>
+	    <div class="h-8" />
+        <Footer client:only="svelte" />
+	</body>
+</html>

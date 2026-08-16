@@ -1,0 +1,119 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/projects/ProjectCard.svelte";
+import type { ToolWithColor } from '../models/toolWithColor';
+import { URL_PICTOCHAT, URL_HATI } from "../constants/urls";
+
+import SvgPathReact from '../assets/svgs/tools/react.svgpath?raw';
+import SvgPathAndroid from '../assets/svgs/tools/android.svgpath?raw';
+import SvgPathPhaser from '../assets/svgs/tools/phaser.svgpath?raw';
+import SvgPathAstro from '../assets/svgs/tools/astro.svgpath?raw';
+import SvgPathSvelte from '../assets/svgs/tools/svelte.svgpath?raw';
+import SvgPathSpring from '../assets/svgs/tools/springboot.svgpath?raw';
+
+
+const { t } = Astro.locals;
+
+const gitLabel = t("projects.misc.git")
+
+const toolTypescript: ToolWithColor = { name: "TypeScript", color: "bg-[#3178c6]" };
+
+const tools: Record<string, ToolWithColor[]> = {
+    Pictochat: [
+        toolTypescript,
+        { name: "React", color: "text-[#58c4dc]", svgPath: SvgPathReact }
+    ],
+    PlainContainers: [
+        { name: "Kotlin", color: "bg-[#A97BFF]" },
+        { name: "Android Studio", color: "text-[#30a048]", svgPath: SvgPathAndroid }
+    ],
+    Hati: [
+        toolTypescript,
+        { name: "Phaser", color: "text-[#a66cb0]", svgPath: SvgPathPhaser }
+    ],
+    Website: [
+        toolTypescript,
+        { name: "Astro", color: "text-[#e73cb6]", svgPath: SvgPathAstro },
+        { name: "Svelte", color: "text-[#ff3e00]", svgPath: SvgPathSvelte }
+    ],
+    Homeserver: [
+        { name: "Java", color: "bg-[#b07219]" },
+        { name: "Spring Boot", color: "text-[#6cb52d]", svgPath: SvgPathSpring }
+    ]
+}
+---
+
+<Layout title={t("nav.projects")}>
+
+
+    <div class="flex flex-col">
+        <section>
+            <legend>{t("projects.legend.pretext")}</legend>
+            <p>{t("projects.pretext.text0")}</p>
+            <p>{t("projects.pretext.hover")}</p>
+            <br>
+            <p>
+                <span class="font-bold">{t("projects.pretext.note")}</span>
+                {t("projects.pretext.ai0")}
+            </p>
+        </section>
+
+    <div class="mt-8 mx-auto cardGrid">
+        <ProjectCard 
+            title="hati"
+            description={t("projects.description.hati")}
+            gitLabel={gitLabel}
+            gitUrl="https://github.com/JTWallis/hati"
+            tools={tools.Hati}
+            imgSrc="/thumbnails/hati.webp"
+            animatedSrc="/thumbnails/hati-animated.webp"
+            websiteUrl={URL_HATI}
+            coverImg={true}
+        />
+
+
+        <ProjectCard 
+            title="PlainContainers"
+            description={t("projects.description.plaincontainers")}
+            gitLabel={gitLabel}
+            gitUrl="https://github.com/JTWallis/PlainContainers"
+            tools={tools.PlainContainers}
+            imgSrc="/thumbnails/plaincontainers.webp"
+        />
+
+        <ProjectCard 
+            title="Pictochat"
+            description={t("projects.description.pictochat")}
+            gitLabel={gitLabel}
+            gitUrl="https://github.com/JTWallis/Pictochat"
+            tools={tools.Pictochat}
+            imgSrc="/thumbnails/pictochat.webp"
+            animatedSrc="/thumbnails/pictochat-animated.webp"
+            websiteUrl={URL_PICTOCHAT}
+            coverImg={true}
+        />
+
+
+        <div class="smallProjectCardsContainer">
+            <ProjectCard 
+                title="Website"
+                description={t("projects.description.website")}
+                gitLabel={gitLabel}
+                gitUrl="https://github.com/JTWallis/PortfolioWebsite"
+                tools={tools.Website}
+            />
+
+            <ProjectCard 
+                title="Homeserver"
+                description={t("projects.description.homeserver")}
+                gitLabel={gitLabel}
+                gitUrl="https://github.com/JTWallis/Homeserver"
+                tools={tools.Homeserver}
+            />
+        </div>
+
+        <!-- TODO Vulkan App -->
+    </div>
+
+    </div>
+</Layout>

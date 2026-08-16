@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Arranger from "../components/melody-creator/Arranger.svelte";
+
+const { t } = Astro.locals;
+---
+
+<Layout title={t("nav.melody-creator")}>
+
+    <div class="flex flex-col items-center gap-8">
+        <section class="w-pref-60-80">
+            <legend><h1>{t("nav.melody-creator")}</h1></legend>
+
+            <details>
+                <summary class="font-bold hover:bg-surface1 hover:cursor-pointer">{t("melody-creator.pretext.title0")}</summary>
+                <p>{t("melody-creator.pretext.text0")}</p>
+                <br>
+                <p>{t("melody-creator.pretext.text1")}</p>
+                <p>{t("melody-creator.pretext.text2")}</p>
+                <p>{t("melody-creator.pretext.text3")}</p>
+                <p>{t("melody-creator.pretext.text4")}</p>
+                <br>
+                <p>{t("melody-creator.pretext.text5")}</p>
+                <p>{t("melody-creator.pretext.text6")}</p>
+                <p>{t("melody-creator.pretext.text7")}</p>
+                <p>{t("melody-creator.pretext.text8")}</p>
+            </details>
+
+            <details>
+                <summary class="font-bold hover:bg-surface1 hover:cursor-pointer">{t("melody-creator.pretext.title1")}</summary>
+                <p>{t("melody-creator.pretext.text9")}</p>
+                <p>{t("melody-creator.pretext.text10")}</p>
+                <p>{t("melody-creator.pretext.text11")}</p>
+                <p class="italic">{t("melody-creator.pretext.text12")}</p>
+                <br>
+                <p>{t("melody-creator.pretext.text13")}</p>
+                <p>{t("melody-creator.pretext.text14")}</p>
+                <p>{t("melody-creator.pretext.text15")}</p>
+                <p>{t("melody-creator.pretext.text16")}</p>
+                <p>{t("melody-creator.pretext.text17")}</p>
+                <p>{t("melody-creator.pretext.text18")}</p>
+                <p>{t("melody-creator.pretext.text19")}</p>
+                <p>{t("melody-creator.pretext.text20")}</p>
+            </details>
+        </section>
+
+
+        <Arranger client:only="svelte" />
+    </div>
+
+
+</Layout>

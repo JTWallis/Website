@@ -1,0 +1,25 @@
+---
+    const { t } = Astro.locals;
+    import Catppuccin from './Catppuccin.svelte';
+
+    const text = "haha";
+
+     //       <span class="font-bold"><span class="text-red">C</span><span class="text-maroon">a</span><span class="text-peach">t</span><span class="text-yellow">p</span><span class="text-green">p</span><span class="text-teal">u</span><span class="text-sky">c</span><span class="text-sapphire">c</span><span class="text-blue">i</span><span class="text-lavender">n</span></span>
+    
+---
+
+<section>
+    <legend>{t("home.legend.website")}</legend>
+    <div>
+        <p>{t("home.website.text0")}</p>
+        <p>
+            {t("home.website.text1")}
+            <Catppuccin client:only="svelte" />
+            {t("home.website.text2")}
+        </p>
+        <br>
+        <p>
+            {t("home.website.text3")}
+        </p>
+    </div>
+</section>

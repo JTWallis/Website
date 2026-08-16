@@ -1,0 +1,18 @@
+---
+import '../styles/index.css';
+import Layout from "../layouts/Layout.astro";
+import Greeting from '../components/home/Greeting.astro'
+import Tools from '../components/home/Tools.astro'
+import Website from '../components/home/Website.astro'
+
+const { t } = Astro.locals;
+//             <p set:html={ t("home.main") }></p>
+---
+
+<Layout title={t("nav.home")}>
+
+    <Greeting />
+    <Tools />
+    <Website />
+
+</Layout>

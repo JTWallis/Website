@@ -1,0 +1,98 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { URL_BACKEND } from "../constants/urls";
+import type { MelodyPageDto } from "../models/melody-page-dto";
+import Svg from "../components/elements/Svg.svelte";
+import SvgPathAngleUp from "../assets/svgs/icons/angleup.svgpath?raw";
+import SvgPathAngleDown from "../assets/svgs/icons/angledown.svgpath?raw";
+
+const { t, lang } = Astro.locals;
+
+export const prerender = false
+const langPrefix = lang === "de" ? "" : "/" + lang;
+const pageParam = Astro.url.searchParams.get("page");
+const pageNumber = pageParam ? Number.parseInt(pageParam) : 1;
+
+let melodyPage: MelodyPageDto | undefined;
+
+try {
+    const response = await fetch(`${URL_BACKEND}/melody/overview/${pageNumber}`);
+    if(!response.ok) {
+        throw new Error(`Could not fetch page: ${response.status}`);
+    }
+
+    melodyPage = await response.json() as MelodyPageDto;
+} catch(err: any) {
+    console.warn("Error: ", err.message);
+}
+
+console.log("Url:\n", Astro.url);
+
+const pagingSize = 15;
+const lastPage = melodyPage ? Math.ceil(melodyPage.totalMelodies / pagingSize) : 1; 
+const hasNextPage = pageNumber < lastPage;
+const hasPrevPage = pageNumber > 1;
+
+---
+
+<Layout title={t("nav.melody-creator")}>
+
+    <div class="w-screen flex flex-col items-center">
+
+        <h1>{t("nav.melody-overview")}</h1>
+
+        <div class="w-pref-60-80 mt-4 flex flex-col">
+            <a 
+                href=`${langPrefix}/melody-creator`
+                class="self-end mb-4 p-1 bg-lavender hover:bg-blue text-gray-950 font-bold border-2 border-surface2 rounded-sm"
+            >
+                {t("nav.melody-creator")}
+            </a>
+
+            {!melodyPage || melodyPage.melodies.length === 0 ? null : 
+                <ul class="flex flex-col gap-2 border border-surface2">
+                    {melodyPage.melodies.map(melody => 
+                        <li class="bg-surface0 hover:bg-surface1">
+                            <a href={`${langPrefix}/melody/${melody.id}`} class="flex overflow-hidden justify-between px-2">
+                                <span class="text-lg basis-[70%] overflow-hidden text-ellipsis whitespace-nowrap">{melody.title}</span>
+                                <span class="italic basis-[30%] overflow-hidden text-ellipsis whitespace-nowrap text-end">{melody.author}</span>
+                            </a>
+                        </li>
+                    )}
+                </ul>
+            }
+
+            <div class="flex justify-evenly bg-surface0 border border-t-2 border-surface2">
+                <a 
+                    href={hasPrevPage ? `${langPrefix}/melodies?page=1` : null}
+                    class=`bg-surface1 ${!hasPrevPage ? "opacity-40" : "hover:bg-surface2"}`
+                >
+                    <Svg path={SvgPathAngleDown} />
+                </a>
+
+                <a 
+                    href={hasPrevPage ? `${langPrefix}/melodies?page=${pageNumber-1}` : null}
+                    class=`bg-surface1 ${!hasPrevPage ? "opacity-40" : "hover:bg-surface2"}`
+                >
+                    <Svg path={SvgPathAngleDown} />
+                </a>
+
+                <span>{pageNumber} / {lastPage}</span>
+
+                <a 
+                    href={hasNextPage ? `${langPrefix}/melodies?page=${pageNumber+1}` : null}
+                    class=`bg-surface1 ${!hasNextPage ? "opacity-40" : "hover:bg-surface2"}`
+                >
+                    <Svg path={SvgPathAngleUp} />
+                </a>
+
+                <a 
+                    href={hasNextPage ? `${langPrefix}/melodies?page=${lastPage}` : null}
+                    class=`bg-surface1 ${!hasNextPage ? "opacity-40" : "hover:bg-surface2"}`
+                >
+                    <Svg path={SvgPathAngleUp} />
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>

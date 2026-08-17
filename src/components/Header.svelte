@@ -30,7 +30,12 @@
     let selectedIndex = $derived(findEndpointIndex());
 
     function findEndpointIndex() {
-        const endpoint = endpoints.find(e => pathname.endsWith(e.pathname));
+        let path = pathname;
+        if(path.length > 1 && path.endsWith("/")) {
+            path = path.substring(0, path.length-1);
+        }
+
+        const endpoint = endpoints.find(e => path.endsWith(e.pathname));
         return endpoint?.headerIndex ?? -1;
     }
 

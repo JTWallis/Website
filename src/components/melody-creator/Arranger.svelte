@@ -238,7 +238,6 @@
             }
 
             const result = await response.json();
-            console.log("Upload response:", result);
         } catch(err: any) {
             console.error(err.message);
             triggerError(t("error.melody.upload"));

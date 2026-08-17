@@ -10,6 +10,8 @@ import swup from '@swup/astro';
 export default defineConfig({
   integrations: [svelte(), swup()],
 
+  site: "https://jtwallis.github.io",
+
   vite: {
     plugins: [tailwindcss()]
   },

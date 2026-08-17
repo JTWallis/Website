@@ -7,15 +7,6 @@
     let cursorType = $derived($interactiveSettings.cursorType);
     let scrollTop = 0;
 
-    const count = sessionStorage.getItem("count");
-
-    console.log("Count:", count);
-    let countIncr;
-    if(!count) countIncr = "0";
-    else countIncr = Number.parseInt(count) + 1;
-
-    sessionStorage.setItem("count", countIncr.toString());
-
     function onMouseMove(e: MouseEvent) {
         cursor.style.left = `${e.pageX}px`;
         cursor.style.top = `${e.pageY}px`;

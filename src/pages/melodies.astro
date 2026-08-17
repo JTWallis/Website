@@ -26,8 +26,6 @@ try {
     console.warn("Error: ", err.message);
 }
 
-console.log("Url:\n", Astro.url);
-
 const pagingSize = 15;
 const lastPage = melodyPage ? Math.ceil(melodyPage.totalMelodies / pagingSize) : 1; 
 const hasNextPage = pageNumber < lastPage;

@@ -118,7 +118,6 @@
 
         if(startIndex < 0) return [];
 
-        console.log("CopyNotes", startBeat);
         const copy = storedNotes.slice(startIndex);
 
         // Remove leading notes when selecting rest (marker with no note)
@@ -156,7 +155,6 @@
                         continue;
                     }
 
-                    console.log("Playing Note", note);
                     audioManager.playSound(note);
                 } else {
                     break;
